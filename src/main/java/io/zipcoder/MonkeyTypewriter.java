@@ -1,7 +1,7 @@
 package io.zipcoder;
  import java.util.Random;
 public class MonkeyTypewriter {
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args)  throws InterruptedException {
         String introduction = "It was the best of times,\n" +
                 "it was the blurst of times,\n" +
                 "it was the age of wisdom,\n" +
@@ -24,10 +24,10 @@ public class MonkeyTypewriter {
         // For each Copier(one safe and one unsafe), create and start 5 monkeys copying the introduction to
         // A Tale Of Two Cities.
 
-       Thread[] unsafe = new Thread[[5]];
+       Thread[] unsafe = new Thread[5];
        UnsafeCopier unsafeCopier = new UnsafeCopier(introduction);
        for( int i = 0; i < 5; i++) {
-           unsafe[i] = new Thread(UnsafeCopier);
+           unsafe[i] = new Thread(unsafeCopier);
        }
        for (int i = 0; i < unsafe.length; i++) {
            unsafe[i].start();
@@ -36,7 +36,7 @@ public class MonkeyTypewriter {
        Thread[] safe = new Thread[5];
        SafeCopier safeCopier = new SafeCopier(introduction);
        for(int i =0;i < 5; i++) {
-           safe[] = new Thread(safeCopier);
+           safe[i] = new Thread(safeCopier);
        }
        for (int i = 0; i < safe.length; i++) {
            safe[i].start();
@@ -49,11 +49,13 @@ public class MonkeyTypewriter {
         // This wait is here because main is still a thread and we want the main method to print the finished copies
         // after enough time has passed.
         try {
-            Thread.sleep(1000);
+            Thread.sleep(3000);
         } catch(InterruptedException e) {
             System.out.println("MAIN INTERRUPTED");
         }
 
+        System.out.println(unsafeCopier.getCopied());
+        System.out.println(safeCopier.getCopied());
         // Print out the copied versions here.
     }
 }

@@ -17,5 +17,9 @@ public abstract class Copier implements Runnable {
         this.copied = "";
     }
 
+    public String getCopied() {
+        return copied;
+    }
+
     public abstract void run();
 }
